@@ -181,7 +181,8 @@ void MainWindow::addPieces()
 
     // 将玩家1的棋子放置到上方备战区
     for(size_t i = 0; i < player1Pieces.size(); ++i){
-        player1Pieces[i]->setPos(i * 50, -50); // 上方备战区 y = -1 * cellSize
+        std::cout<<i<<std::endl;
+        player1Pieces[i]->setPos(i * 0, -50); // 上方备战区 y = -1 * cellSize
     }
 
     // 玩家2的棋子（红色）
@@ -352,16 +353,20 @@ void MainWindow::onGraphicsViewClicked(QPointF point)
     // 上方备战区：y == -1
     if(y == -1 && currentPlayer == 1){
         std::cout<<"is in Player1's set"<<std::endl;
+        std::cout<<x<<std::endl;
         size_t pieceIndex = static_cast<size_t>(x);
         if(pieceIndex < player1Pieces.size()){
             Piece *piece = player1Pieces[pieceIndex];
+            std::cout<<888888888<<std::endl;
             if(piece){
                 // 选择棋子并高亮可放置的位置
+                std::cout<<8888888<<std::endl;
                 selectedPiece = piece;
 
                 // 高亮基地中的可放置位置
                 // 玩家1的基地：纵向 11-13 列，横向 0-1 行
                 for(size_t i =11; i <=13; ++i){
+                    std::cout<<8888888<<std::endl;
                     for(size_t j =0; j <=1; ++j){
                         if(boardTerrain[i][j] == TerrainType::Base){
                             QGraphicsRectItem *highlight = scene->addRect(i * cellSize, j * cellSize, cellSize, cellSize, QPen(Qt::red), QBrush(QColor(255,0,0,100)));
